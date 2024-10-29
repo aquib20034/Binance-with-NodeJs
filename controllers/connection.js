@@ -10,7 +10,7 @@ const client = new Spot(
 );
 
 // Get account information
-// client.account().then((response) => client.logger.log(response.data));
+client.account().then((response) => client.logger.log(response.data));
 async function placeMarketOrder() {
   const order = await client.newOrder("BNBUSDT", "BUY", "MARKET", {
     // price: "300.00",
@@ -34,22 +34,21 @@ async function placeLimitOrder() {
   console.log(order);
 }
 
-placeLimitOrder();
-4;
+// placeLimitOrder();
 
-async function coinInfo(symbol) {
-  const coinInfo = await client.exchangeInfo({ symbol: symbol });
-  const minQty = parseFloat(coinInfo.data.symbols[0].filters[1].minQty);
-  return minQty.toString().split(".")[1].length;
-}
-coinInfo("BNBUSDT");
+// async function coinInfo(symbol) {
+//   const coinInfo = await client.exchangeInfo({ symbol: symbol });
+//   const minQty = parseFloat(coinInfo.data.symbols[0].filters[1].minQty);
+//   return minQty.toString().split(".")[1].length;
+// }
+// coinInfo("BNBUSDT");
 
-async function amountToQuantity(amount, price, minNotValueCount) {
-  const quantity = await parseFloat(
-    parseFloat((1 / price) * amount).toFixed(minNotValueCount)
-  );
-  return quantity;
-}
+// async function amountToQuantity(amount, price, minNotValueCount) {
+//   const quantity = await parseFloat(
+//     parseFloat((1 / price) * amount).toFixed(minNotValueCount)
+//   );
+//   return quantity;
+// }
 
 // async function placeLimitOrder(symbol, amount, price) {
 //   try {
@@ -68,20 +67,20 @@ async function amountToQuantity(amount, price, minNotValueCount) {
 
 // placeLimitOrder("BNBUSDT", 10, 220);
 
-async function placeOrder() {
-  client
-    .newOCOOrder("ETHUSDT", "BUY", 1, 150, 200, {
-      stopLimitPrice: 155,
-      stopLimitTimeInforce: "GTC",
-    })
-    .then((response) => client.logger.log(response.data))
-    .catch((error) => client.logger.error(error));
-}
-placeOrder();
+// async function placeOrder() {
+//   client
+//     .newOCOOrder("ETHUSDT", "BUY", 1, 150, 200, {
+//       stopLimitPrice: 155,
+//       stopLimitTimeInforce: "GTC",
+//     })
+//     .then((response) => client.logger.log(response.data))
+//     .catch((error) => client.logger.error(error));
+// }
+// placeOrder();
 
-client
-  .cancelOCOOrder("ETHUSDT", {
-    orderListId: 52,
-  })
-  .then((response) => client.logger.log(response.data))
-  .catch((error) => client.logger.error(error));
+// client
+//   .cancelOCOOrder("ETHUSDT", {
+//     orderListId: 52,
+//   })
+//   .then((response) => client.logger.log(response.data))
+//   .catch((error) => client.logger.error(error));
